@@ -1,3 +1,11 @@
+.navbar {
+  border-radius: 0px;
+}
+
+.navbar-brand {
+  font-size: 30px;
+}
+
 .gallery {
   display: flex;
   justify-content: flex-start;
@@ -25,7 +33,7 @@ img {
   margin: 20px;
 }
 
-form {
+.form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,4 +44,20 @@ form {
 
 label {
   font-weight: bold;
+}
+
+.poo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+}
+
+.poo-image {
+  height: 30px;
+  width: 30px;
+}
+
+.poo-image-faded {
+  opacity: 0.3;
 }

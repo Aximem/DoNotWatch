@@ -1,0 +1,17 @@
+<div class="poo">
+    <form method="post" action="/update/#(movie.id)/1" id="form1#(movie.id)">
+        <a href="#" onclick="document.getElementById('form1#(movie.id)').submit();"><img class="poo-image" src="styles/images/poo.png" alt="poo"></a>
+    </form>
+    <form method="post" action="/update/#(movie.id)/2" id="form2#(movie.id)">
+        <a href="#" onclick="document.getElementById('form2#(movie.id)').submit();"><img class="poo-image #if(movie.rating < 2){poo-image-faded}"  src="styles/images/poo.png" alt="poo"></a>
+    </form>
+    <form method="post" action="/update/#(movie.id)/3" id="form3#(movie.id)">
+        <a href="#" onclick="document.getElementById('form3#(movie.id)').submit();"><img class="poo-image #if(movie.rating < 3){poo-image-faded}" src="styles/images/poo.png" alt="poo"></a>
+    </form>
+    <form method="post" action="/update/#(movie.id)/4" id="form4#(movie.id)">
+        <a href="#" onclick="document.getElementById('form4#(movie.id)').submit();"><img class="poo-image #if(movie.rating < 4){poo-image-faded}" src="styles/images/poo.png" alt="poo"></a>
+    </form>
+    <form method="post" action="/update/#(movie.id)/5" id="form5#(movie.id)">
+        <a href="#" onclick="document.getElementById('form5#(movie.id)').submit();"><img class="poo-image #if(movie.rating < 5){poo-image-faded}" src="styles/images/poo.png" alt="poo"></a>
+    </form>
+</div>

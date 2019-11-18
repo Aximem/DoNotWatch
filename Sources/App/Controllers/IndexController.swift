@@ -10,6 +10,8 @@ struct IndexController: RouteCollection {
         
         // Actions
         router.post(Movie.self, at: "movies", use: movies)
+        router.post("update", Movie.parameter, Int.parameter, use: movieUpdate)
+        router.post("delete", Movie.parameter, use: movieDelete)
     }
     
     // Index page
@@ -33,6 +35,31 @@ struct IndexController: RouteCollection {
         return movie.save(on: req)
             .map(to: Response.self) { _ in
                 return req.redirect(to: "/")
+        }
+    }
+    
+    // Update movie
+    func movieUpdate(_ req: Request) throws -> Future<Response> {
+        let movie = try req.parameters.next(Movie.self)
+        let rating = try req.parameters.next(Int.self)
+        return movie.flatMap { updateMovie in
+            updateMovie.rating = rating
+            return updateMovie.save(on: req)
+                .map(to: Response.self) { savedMovie in
+                    guard savedMovie.id != nil else {
+                        throw Abort(.internalServerError)
+                    }
+                    return req.redirect(to: "/")
+            }
+        }
+    }
+    
+    // Delete movie
+    func movieDelete(_ req: Request) throws -> Future<Response> {
+        return try req.parameters.next(Movie.self)
+            .flatMap(to: Response.self) { movie in
+                return movie.delete(on: req)
+                    .transform(to: req.redirect(to: "/"))
         }
     }
 }

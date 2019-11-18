@@ -3,8 +3,15 @@
     #if(movies) {
       #for(movie in movies) {
         <div class="movie">
+        
           <img src="#(movie.imageUrl)" alt="#(movie.title)">
           <h3 class="title">#(movie.title)</h3>
+
+          #embed("poo")
+          
+          <form method="post" action="/delete/#(movie.id)">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
         </div>
       }
     }
