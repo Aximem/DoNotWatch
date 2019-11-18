@@ -1,0 +1,14 @@
+#set("body") {
+  <div class="gallery">
+    #if(movies) {
+      #for(movie in movies) {
+        <div class="movie">
+          <img src="#(movie.imageUrl)" alt="#(movie.title)">
+          <h3 class="title">#(movie.title)</h3>
+        </div>
+      }
+    }
+  </div>
+  <a class="btn btn-primary" href="/create" role="button">Add a movie</a>
+}
+#embed("template")

@@ -18,3 +18,6 @@
         <img src="http://img.shields.io/badge/swift-4.1-brightgreen.svg" alt="Swift 4.1">
     </a>
 </p>
+
+docker run --name mysql -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_DATABASE=DoNotWatch -p 3306:3306 mysql/mysql-server:5.7
+docker restart 501dd939d927f7c26ff70a7c25656add088698a7e2549538f3718389ef71bf8b
