@@ -5,19 +5,18 @@ struct IndexController: RouteCollection {
     
     func boot(router: Router) throws {
         // Pages
-        router.get("", use: index)
-        router.get("create", use: movieCreate)
+        router.get("", use: indexPage)
+        router.get("create", use: createPage)
         
         // Actions
-        router.post(Movie.self, at: "movies", use: movies)
-        router.post("update", Movie.parameter, Int.parameter, use: movieUpdate)
+        router.post(Movie.self, at: "create", use: movieCreate)
+        router.post("update", Movie.parameter, use: movieUpdate)
         router.post("delete", Movie.parameter, use: movieDelete)
     }
     
     // Index page
-    func index(_ req: Request) throws -> Future<View> {
+    func indexPage(_ req: Request) throws -> Future<View> {
         return Movie.query(on: req)
-            .sort(\.title, .ascending)
             .all()
             .flatMap(to: View.self) { movies in
                 let indexContext = IndexContext(movies: movies)
@@ -26,12 +25,12 @@ struct IndexController: RouteCollection {
     }
     
     // Create page
-    func movieCreate(_ req: Request) throws -> Future<View> {
+    func createPage(_ req: Request) throws -> Future<View> {
         return try req.view().render("create")
     }
     
     // Post a new movie and redirect to index page
-    func movies(_ req: Request, movie: Movie) throws -> Future<Response> {
+    func movieCreate(_ req: Request, movie: Movie) throws -> Future<Response> {
         return movie.save(on: req)
             .map(to: Response.self) { _ in
                 return req.redirect(to: "/")

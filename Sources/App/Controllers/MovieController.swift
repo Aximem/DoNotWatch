@@ -10,7 +10,6 @@ struct MovieController: RouteCollection {
         // READ : Get Movies
         router.get("v1", "movies") { req -> Future<[Movie]> in
             return Movie.query(on: req)
-                .sort(\.title, .ascending)
                 .all()
         }
         
