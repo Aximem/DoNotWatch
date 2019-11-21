@@ -10,7 +10,7 @@ struct IndexController: RouteCollection {
         
         // Actions
         router.post(Movie.self, at: "create", use: movieCreate)
-        router.post("update", Movie.parameter, use: movieUpdate)
+        router.post("update", Movie.parameter, Int.parameter, use: movieUpdate)
         router.post("delete", Movie.parameter, use: movieDelete)
     }
     
